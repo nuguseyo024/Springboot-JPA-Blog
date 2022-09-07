@@ -11,6 +11,16 @@ import javax.persistence.Id;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity // 스프링부트가 실행될 때 user클래스를 읽어서 자동으로 mysql에 테이블이 생성된다 
 public class User {
 
