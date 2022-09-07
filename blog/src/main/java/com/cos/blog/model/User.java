@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity // 스프링부트가 실행될 때 user클래스를 읽어서 자동으로 mysql에 테이블이 생성된다 
@@ -28,6 +29,7 @@ public class User {
 	@Column(nullable = false, length=50)
 	private String email;
 	
+	@ColumnDefault("'user'")
 	private String role;	// Enum을 쓰는게 좋다 
 							// Enum을 쓰면 도메인을 지정할 수 있음 
 	@CreationTimestamp	// 시간이 자동으로 입력되는 어노테이션 
