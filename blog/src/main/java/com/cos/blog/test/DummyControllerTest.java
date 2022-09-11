@@ -38,7 +38,6 @@ public class DummyControllerTest {
 		return "삭제 완료 id : "+id ;
 	}
 	
-	
 	@Transactional		// 더티체킹 
 	@PutMapping("/dummy/user/{id}")
 	public User updateUser(@PathVariable int id, @RequestBody User requestUser) {
