@@ -26,7 +26,7 @@ public class DummyControllerTest {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Transactional
+	@Transactional		// 더티체킹 
 	@PutMapping("/dummy/user/{id}")
 	public User updateUser(@PathVariable int id, @RequestBody User requestUser) {
 		System.out.println("id : " + id);
