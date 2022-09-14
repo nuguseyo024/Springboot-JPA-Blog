@@ -22,6 +22,6 @@ public class UserApiController {
 		System.out.println("UserApiController : save 호출됨 ");
 		user.setRole(RoleType.USER);
 		int result = userService.join(user);
-		return new ResponseDto<Integer>(HttpStatus.OK, result);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), result);
 	}
 }
