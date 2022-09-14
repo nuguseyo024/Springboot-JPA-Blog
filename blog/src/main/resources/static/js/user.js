@@ -17,6 +17,6 @@ let index = {
 		// ajax 통신을 이용해 3개의 데이터를 json 으로 변경하여 insert 요청 
 		$.ajax().done.fail();
 		
-	}
+	} 
 }
 index.init();
