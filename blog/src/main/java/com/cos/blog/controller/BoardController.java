@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BoardController {
 	
 	@GetMapping({"","/"})
-	public String index() {
+	public String indedx() {
 		return "index";
 	}
 }
