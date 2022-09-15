@@ -23,7 +23,7 @@ let index = {
 		$.ajax({
 			// 회원가입 수행 요청 
 			type:"POST",
-			url: "/blog/api/user",
+			url: "/api/user",
 			data: JSON.stringify(data),
 			contentType:"application/json; charset=utf-8",
 			// body 데이터가 어떤 타입인지 (MIME)
@@ -32,7 +32,7 @@ let index = {
 			// 응답 결과가 정상이면 done 실행 
 			alert("회원가입이 완료되었습니다. ");
 			console.log(resp);
-			location.href="/blog";
+			location.href="/";
 		}).fail(function(error){
 			// 응답 결과가 비정상이면 fail 실행 
 			alert(JSON.stringify(error));
@@ -47,13 +47,13 @@ let index = {
 		};
 		$.ajax({
 			type:"POST",
-			url: "/blog/api/user/login",
+			url: "/api/user/login",
 			data: JSON.stringify(data),
 			contentType:"application/json; charset=utf-8",
 			dataType: "json" 
 		}).done(function(resp){
 			alert("로그인 성공 ");
-			location.href="/blog";
+			location.href="/";
 		}).fail(function(error){
 			alert(JSON.stringify(error));
 		});
