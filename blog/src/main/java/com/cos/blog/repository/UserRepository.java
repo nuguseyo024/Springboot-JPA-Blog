@@ -9,9 +9,11 @@ import com.cos.blog.model.User;
 // 자동으로 Bean 등록이 된다 
 // @Repository // 생략 가능함 
 public interface UserRepository extends JpaRepository<User, Integer>{
-	// JPA Naming 전략 
-	User findByUsernameAndPassword(String username, String password);
 	
-//	@Query(value="select * from user where username=? and password=?", nativeQuery=true)
-//	User login(String username, String password);
 }
+
+	//JPA Naming 전략 
+	//User findByUsernameAndPassword(String username, String password);
+	
+	//	@Query(value="select * from user where username=? and password=?", nativeQuery=true)
+	//	User login(String username, String password);
