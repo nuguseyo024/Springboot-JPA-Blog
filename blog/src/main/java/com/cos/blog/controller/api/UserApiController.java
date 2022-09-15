@@ -1,7 +1,5 @@
 package com.cos.blog.controller.api;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +25,7 @@ public class UserApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), result);
 	}
 	
+	/* 파라미터로 들어가 있는 HttpSession 을 Autowired 로 빼도 됨 
 	@PostMapping("/api/user/login")
 	public ResponseDto<Integer> login(@RequestBody User user, HttpSession session){
 		System.out.println("UserApiController : login 호출됨 ");
@@ -36,4 +35,6 @@ public class UserApiController {
 		}
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
+	*/
+	
 }
