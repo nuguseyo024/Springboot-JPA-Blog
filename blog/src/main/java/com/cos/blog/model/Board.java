@@ -36,7 +36,7 @@ public class Board {
 	@Lob // 대용량 데이터 
 	private String content; // 썸머노트 라이브러리 사용 - <html> 태그 섞여서 디자인 됨 
 	
-	@ColumnDefault("0")
+
 	private int count;
 	
 	@ManyToOne  // Many = Board, User = One
