@@ -24,18 +24,25 @@ public class BoardService {
 		boardRepository.save(board);
 	}
 
+	@Transactional(readOnly=true) // select 만 하니까 readOnly=true
 	public Page<Board> boardList(Pageable pageable) {
 		// BoardRepository는 비어있지만 상속받은 JpaRepository 가 기능을 다 들고 있기 때문에
 		// findAll 함수를 사용할 수 있다 
 		return boardRepository.findAll(pageable);
 	}
 
+	@Transactional(readOnly=true)
 	public Board boardRead(int id) {
 		return boardRepository.findById(id)
 				.orElseThrow(()->{
 					return new IllegalArgumentException("글 상세보기 실패 : 글 번호를 찾을 수 없습니다.");
 				});
 		
+	}
+
+	@Transactional
+	public void delete(int id) {
+		boardRepository.deleteById(id);		
 	}
 
 }
