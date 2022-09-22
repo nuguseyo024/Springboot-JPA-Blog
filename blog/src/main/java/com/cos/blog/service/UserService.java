@@ -1,6 +1,10 @@
 package com.cos.blog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +22,10 @@ public class UserService {
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
 	
 	@Transactional
 	public void join(User user) {
@@ -39,14 +47,15 @@ public class UserService {
 				orElseThrow(()->{
 					return new IllegalArgumentException("회원 찾기 실패 ");
 				});
-		String rawPassword = user.getPassword();
-		// 영속화된 유저 오브젝트에서 비밀번호를 가져온다 
-		String encPassword = encoder.encode(rawPassword);
-		// autowired 된 encoder로 초기 비밀번호를 암호화해준다 
-		persistance.setPassword(encPassword);
-		// 암호화된 비밀번호로 세팅해준다 
+		String rawPassword = user.getPassword();	// 영속화된 유저 오브젝트에서 비밀번호를 가져온다 
+		String encPassword = encoder.encode(rawPassword);	// autowired 된 encoder로 초기 비밀번호를 암호화해준다 	
+		persistance.setPassword(encPassword);	// 암호화된 비밀번호로 세팅해준다 	
 		persistance.setEmail(user.getEmail());
 		
+		// 세션 등록 
+		Authentication authentication = 
+				authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword()));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 	} 	// 회원 수정 함수 종료 == 서비스 종료 == 트랜잭션 종료 == commit 
 		// 영속화된 persistance 객체의 변화가 감지되면 더티체킹이 되어 변화된 내용을 update 시켜준다 
 

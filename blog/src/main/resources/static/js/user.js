@@ -39,8 +39,9 @@ let index = {
 		});
 	},
 	update:function(){
-		let data ={
+		let data = {
 			id: $("#id").val(),
+			username: $("#username").val(),
 			password: $("#password").val(),
 			email: $("#email").val()		
 		};
