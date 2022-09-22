@@ -33,7 +33,7 @@ public class User {
 	@Column(nullable = false, length = 30, unique = true)
 	private String username; // id
 
-	@Column(length = 100)
+	@Column(nullable = false, length = 100)
 	// 비밀번호를 해쉬값으로 암호화할 것이기 때문에 100으로 넉넉하게 잡아둔다
 	private String password;
 
