@@ -30,7 +30,7 @@ public class User {
 	// 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다
 	private int id; // 시퀀스(오라클), auto_increment(mysql)
 
-	@Column(nullable = false, length = 30, unique = true)
+	@Column(nullable = false, length = 1000, unique = true)
 	private String username; // id
 
 	@Column(nullable = false, length = 100)
@@ -46,6 +46,8 @@ public class User {
 	private RoleType role; // Enum을 쓰는게 좋다
 							// Enum을 쓰면 도메인을 지정할 수 있음
 
+	private String oauth; // kakao, google... 
+	
 	@CreationTimestamp // 시간이 자동으로 입력되는 어노테이션
 	private Timestamp createDate;
 }
