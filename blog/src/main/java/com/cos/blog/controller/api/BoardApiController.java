@@ -27,7 +27,7 @@ public class BoardApiController {
 		boardService.write(board, principal.getUser());
 		return new ResponseDto<Integer> (HttpStatus.OK.value(),1);
 	}
-
+ 
 	@DeleteMapping("/api/board/{id}")
 	public ResponseDto<Integer> deleteById(@PathVariable int id){
 		boardService.delete(id);
