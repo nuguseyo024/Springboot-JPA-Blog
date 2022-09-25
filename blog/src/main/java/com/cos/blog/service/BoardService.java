@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.blog.model.Board;
+import com.cos.blog.model.Reply;
 import com.cos.blog.model.User;
 import com.cos.blog.repository.BoardRepository;
+import com.cos.blog.repository.ReplyRepository;
 
 // 스프링이 컴포넌트 스캔을 통해서 Bean 에 등록을 해줌 == IoC 를 해준다 
 @Service
@@ -17,6 +19,9 @@ public class BoardService {
 	@Autowired
 	private BoardRepository boardRepository;
 
+	@Autowired
+	private ReplyRepository replyRepository;
+	
 	@Transactional
 	public void write(Board board,User user) {
 		board.setCount(0);
@@ -56,6 +61,21 @@ public class BoardService {
 		// 해당 함수 종료 시 (서비스단에서 서비스가 종료될 때)
 		// 트랜잭션이 종료된다 -> 이 때, 더티체킹이 일어남 (영속화 된 데이터가 달라졌기 때문에)
 		// -> 자동 업데이트가 됨 (db flush 가 일어남 :: commit된다)
+	}
+
+
+	@Transactional
+	public void replyWrite(User user, int boardId, Reply requestReply) {
+		
+		Board board = boardRepository.findById(boardId)
+				.orElseThrow(()->{
+					return new IllegalArgumentException("댓글 작성 실패 : 게시글 번호를 찾을 수 없습니다. ");
+				});
+		
+		requestReply.setUser(user);
+		requestReply.setBoard(board);
+		
+		replyRepository.save(requestReply);
 	}
 
 }
