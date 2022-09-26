@@ -78,4 +78,9 @@ public class BoardService {
 		replyRepository.save(requestReply);
 	}
 
+	public void replyDelete(int replyId) {
+		replyRepository.deleteById(replyId);
+		
+	}
+
 }

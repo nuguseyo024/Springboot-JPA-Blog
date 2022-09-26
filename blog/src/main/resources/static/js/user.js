@@ -31,12 +31,12 @@ let index = {
 		}).done(function(resp){
 			// 응답 결과가 정상이면 done 실행 
 			if(resp.status == 500){
+				alert("회원가입 실패 ");
+				location.reload;
+			}else{
 				alert("회원가입이 완료되었습니다. ");
 				console.log(resp);
 				location.href="/";
-			}else{
-				alert("회원가입 실패 ");
-				location.reload;
 			}
 			
 		}).fail(function(error){
