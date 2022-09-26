@@ -30,9 +30,15 @@ let index = {
 			dataType: "json" 
 		}).done(function(resp){
 			// 응답 결과가 정상이면 done 실행 
-			alert("회원가입이 완료되었습니다. ");
-			console.log(resp);
-			location.href="/";
+			if(resp.status == 500){
+				alert("회원가입이 완료되었습니다. ");
+				console.log(resp);
+				location.href="/";
+			}else{
+				alert("회원가입 실패 ");
+				location.reload;
+			}
+			
 		}).fail(function(error){
 			// 응답 결과가 비정상이면 fail 실행 
 			alert(JSON.stringify(error));
